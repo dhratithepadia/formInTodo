@@ -2,7 +2,8 @@
  <template>
   <div>
     <AddTodo v-on:add-todo="addTodo"/>
-    <Todos v-on:del-todo="deleteTodo" v-bind:todos="todos"/>
+    <Todos v-on:del-todo="deleteTodo" v-bind:todos="todos" :icon="['fas', 'trash']"/>
+    <font-awesome-icon :icon="['fas', 'trash']" />
   </div>
 </template>
 

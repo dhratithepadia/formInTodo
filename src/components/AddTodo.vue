@@ -3,7 +3,7 @@
     <br />
     <h1 class="text-center">Todos App</h1>
     <br /><br />
-    <form @submit="addTodo">
+    <form @submit="onSubmit">
       <div class="form-group">
         <input
           required
@@ -24,6 +24,7 @@
   </div>
 </template>
 <script>
+import { mapActions } from 'vuex'
 export default {
   name: 'AddTodo',
   data () {
@@ -32,15 +33,10 @@ export default {
     }
   },
   methods: {
-    addTodo (e) {
-      e.preventDefault()
-      const newTodo = {
-        id: Date.now(),
-        title: this.title,
-        completed: false
-      }
-      // Send up to parent
-      this.$emit('add-todo', newTodo)
+    ...mapActions(['addTodo']),
+    onSubmit (event) {
+      event.preventDefault()
+      this.addTodo(this.title)
 
       this.title = ''
     }
@@ -48,4 +44,8 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.form-group{
+  padding: 5px;
+}
+</style>
