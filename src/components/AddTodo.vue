@@ -1,51 +1,55 @@
 <template>
   <div class="container">
-    <br />
+    <br>
     <h1 class="text-center">Todos App</h1>
-    <br /><br />
-    <form @submit="onSubmit">
+    <br>
       <div class="form-group">
-        <input
-          required
-          type="text"
-          v-model="title"
-          placeholder="title"
-          name="title"
-          id=""
-          class="form-control"
-        />
+        <router-link to="/add" class="link btn btn-danger btn-block form-control">add todo
+        <!-- <button v-on:click="addTodo" class="">
+        {{cardData ? 'Add Todo': 'Update Todo' }} Add Todo</button> -->
+        </router-link>
       </div>
-      <div class="form-group">
-        <button class="btn btn-danger btn-block">
-          Add Todo
-        </button>
-      </div>
-    </form>
   </div>
 </template>
 <script>
-import { mapActions } from 'vuex'
 export default {
   name: 'AddTodo',
+  // props: ['cardData', 'cardTitle'],
   data () {
     return {
-      title: ''
+      title: '',
+      flag: false,
+      isCardSelected: false
+    }
+  },
+  // watch: {
+  //   cardData: {
+  //     handler: function () {
+  //       console.log(this.title, 'testing')
+  //     },
+  //     deep: true,
+  //     immediate: true
+  //   }
+  // },
+  computed: {
+    testdata: function () {
+      return this.flag
     }
   },
   methods: {
-    ...mapActions(['addTodo']),
-    onSubmit (event) {
-      event.preventDefault()
-      this.addTodo(this.title)
-
-      this.title = ''
-    }
   }
 }
+
 </script>
 
 <style scoped>
+.container{
+  padding: 0px
+}
 .form-group{
-  padding: 5px;
+  padding: 30px;
+}
+.link{
+  color: black;
 }
 </style>

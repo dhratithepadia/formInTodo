@@ -24,11 +24,11 @@ const actions = {
 
     commit('updateTodo', response.data)
   },
-  async addTodo ({commit}, title) {
+  async add ({commit}, title) {
     const response = await axios.post(`https://jsonplaceholder.typicode.com/todos`,
       { title: title, completed: false })
 
-    commit('addTodo', response.data)
+    commit('add', response.data)
   }
 }
 
@@ -42,7 +42,7 @@ const mutations = {
       state.todos.splice(index, 1, updatedTodo)
     }
   },
-  addTodo: (state, newTodo) => state.todos.unshift(newTodo)
+  add: (state, newTodo) => state.todos.unshift(newTodo)
 }
 
 export default {
